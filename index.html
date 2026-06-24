@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ソフトボールサークル「Bohemians」</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        /* 共通コンテナ（横幅の制限） */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section {
+            padding: 5rem 0;
+        }
+        .section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #3498db;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        /* ヒーローセクション */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background-color: #000;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.6;
+        }
+        .hero-content {
+            z-index: 1;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            backdrop-filter: blur(4px);
+            max-width: 800px;
+            margin: 0 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .en-title {
+            font-size: 4rem;
+            letter-spacing: 4px;
+            margin: 0.5rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .btn-outline {
+            display: inline-block;
+            padding: 1rem 3rem;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+        .btn-outline:hover {
+            background-color: #fff;
+            color: #333;
+            transform: translateY(-2px);
+        }
+        /* カードデザイン */
+        .activity-cards {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            padding: 2.5rem;
+            flex: 1;
+            backdrop-filter: blur(4px);
+            min-width: 280px;
+            max-width: 450px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        /* タイムライン */
+        .timeline {
+            max-width: 700px;
+            margin: 0 auto;
+            border-left: 3px solid #3498db;
+            padding-left: 2.5rem;
+        }
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.95rem;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #3498db;
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 2px #3498db;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            backdrop-filter: blur(4px);
+        }
+        /* お問い合わせボタン */
+        .btn-instagram {
+            display: inline-block;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        .btn-instagram:hover {
+            transform: scale(1.05);
+        }
+        /* サークルアイコン */
+        .circle-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem auto;
+            display: block;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <!-- サークルのアイコン画像（お持ちのアイコン画像ファイル名に変更してください） -->
+            <img src="327041884_561561092694476_6965960282006098893_n.jpg" alt="サークルアイコン" class="circle-icon">
+            <p class="sub-text-hero">Osaka University Softball Team</p>
+            <h1 class="en-title">BOHEMIANS</h1>
+            <p class="catchphrase">一緒に、最高の大学生活を。</p>
+            <p class="desc">大阪大学唯一のソフトボールサークル。<br>初心者・女子・他大学・留学生、誰でも歓迎。</p>
+            <a href="#contact" class="btn btn-outline">JOIN US</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section fade-in">
+            <div class="container">
+                <h2>サークル紹介</h2>
+                <div class="about-wrapper" style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;">
+                    <div class="about-image" style="flex: 1; min-width: 300px;">
+                        <img src="S__51314743_0.jpg" alt="サークルメンバーの様子" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: cover; aspect-ratio: 4/3;">
+                    </div>
+                    <div class="about-content" style="flex: 1; min-width: 300px; line-height: 1.8; font-size: 1.1rem;">
+                        <h3 style="color: #0056b3; font-size: 1.5rem; margin-bottom: 1rem;">大阪大学唯一のソフトボールサークル⚾</h3>
+                        <p style="margin-bottom: 1.5rem;">私たち「Bohemians」は、みんなでワイワイ、最高の仲間と一緒に大学生活の思い出を作るアットホームなサークルです！</p>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #fca311; font-size: 1.2rem;">✔</span> <strong>初心者大歓迎！</strong> 基礎から優しく教えます</li>
+                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #fca311; font-size: 1.2rem;">✔</span> <strong>女子プレイヤー・マネージャー</strong> も活躍中✨</li>
+                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #fca311; font-size: 1.2rem;">✔</span> 他大学の学生や留学生も所属しています</li>
+                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #fca311; font-size: 1.2rem;">✔</span> 2回生以上からの<strong>駆け込み入部</strong>もOK！</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities" class="section bg-light fade-in">
+            <div class="container">
+                <h2>活動情報</h2>
+                <div class="activity-cards">
+                    <div class="card">
+                        <h3>📅 活動日時</h3>
+                        <p><strong>主に毎週土曜日</strong><br>
+                        <span style="font-size: 0.9em; color: #666;">※時間や曜日は変更されることがあります。<br>最新情報は必ずInstagramの投稿をご確認ください！</span></p>
+                    </div>
+                    <div class="card">
+                        <h3>📍 活動場所</h3>
+                        <p><strong>猪名川運動公園</strong><br>
+                        広々としたグラウンドで思い切りプレーできます。<br>
+                        <a href="https://www.google.com/maps/search/?api=1&query=猪名川運動公園" target="_blank" rel="noopener noreferrer" class="map-link">🗺️ Google Mapで場所を見る</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule" class="section fade-in">
+            <div class="container">
+                <h2>年間スケジュール</h2>
+                <div class="timeline">
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">4月</div>
+                        <div class="timeline-content">サーオリ（サークルオリエンテーション）</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">5月</div>
+                        <div class="timeline-content">BBQ 🍖</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">6月</div>
+                        <div class="timeline-content">まだまだ新歓期！駆け込み入部大歓迎✨</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">7月</div>
+                        <div class="timeline-content">サークル内ソフトボール大会 🏆<br><span class="sub-text">OBやOGの先輩方も参加する大盛り上がりの大会！</span></div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">8月</div>
+                        <div class="timeline-content">夏休み期間 🍉</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">9月</div>
+                        <div class="timeline-content">
+                            <div><strong>夏合宿</strong> 🔥</div>
+                            <a href="summer-camp.html" class="btn-external" style="display:inline-block; margin-top:0.5rem; text-decoration:none;">合宿の様子を見る ➡</a>
+                        </div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">10月</div>
+                        <div class="timeline-content">代替わり（新体制スタート）</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">11月</div>
+                        <div class="timeline-content">秋のイベント 🍂</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">12月</div>
+                        <div class="timeline-content">忘年会 🍻</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">1月</div>
+                        <div class="timeline-content">オフシーズン（テスト期間のためお休み気味⛄）</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">2月</div>
+                        <div class="timeline-content">春合宿に向けて練習再開！⚾</div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">3月</div>
+                        <div class="timeline-content">
+                            <div><strong>春合宿</strong> 🌸</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section fade-in">
+            <div class="container">
+                <h2>活動ギャラリー</h2>
+                <!-- 無限スクロールカルーセル -->
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <!-- ここに自分たちの写真を追加・変更してください -->
+                        <img src="S__51314751_0.jpg" alt="体育館でのレクリエーション" style="border-radius: 8px;">
+                        <img src="S__52346889_0.jpg" alt="ソフトボールの試合" style="border-radius: 8px;">
+                        <img src="S__52346890_0.jpg" alt="バッティングの様子" style="border-radius: 8px;">
+                        <img src="S__52346891_0.jpg" alt="夏合宿の花火" style="border-radius: 8px;">
+                        <img src="S__52346893_0.jpg" alt="夏合宿の集合写真" style="border-radius: 8px;">
+                        <!-- ループが途切れないように同じ画像を複製 -->
+                        <img src="S__52346894_0.jpg" alt="体育館でのレクリエーション" style="border-radius: 8px;">
+                        <img src="S__52346895_0.jpg" alt="ソフトボールの試合" style="border-radius: 8px;">
+                        <img src="夏合宿の様子 (4).jpg" alt="バッティングの様子" style="border-radius: 8px;">
+                        <img src="夏合宿の様子 (1).jpg" alt="夏合宿の花火" style="border-radius: 8px;">
+                        <img src="夏合宿の様子 (5).jpg" alt="夏合宿の集合写真" style="border-radius: 8px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section fade-in">
+            <div class="container">
+                <h2>よくある質問</h2>
+                <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
+                    <!-- 質問と回答はここをコピーして増やせます -->
+                    <details class="faq-item" style="border-bottom: 1px solid #e0e0e0; padding: 1.5rem 1rem;">
+                        <summary style="font-weight: bold; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Q. ソフトボールは未経験ですが、大丈夫ですか？</span>
+                            <span class="faq-icon" style="font-size: 1.5rem; font-weight: normal;">+</span>
+                        </summary>
+                        <div class="faq-answer" style="padding-top: 1.5rem; line-height: 1.8; color: #555;">
+                            <p>A. もちろん大歓迎です！メンバーの半数以上が大学からソフトボールを始めています。体育の授業のような感じな楽しくソフトボールをしているので、運動が苦手な方でも安心して楽しめます。</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" style="border-bottom: 1px solid #e0e0e0; padding: 1.5rem 1rem;">
+                        <summary style="font-weight: bold; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Q. バイトや勉強との両立は可能ですか？</span>
+                            <span class="faq-icon" style="font-size: 1.5rem; font-weight: normal;">+</span>
+                        </summary>
+                        <div class="faq-answer" style="padding-top: 1.5rem; line-height: 1.8; color: #555;">
+                            <p>A. はい、可能です。練習は土曜日がメインで、参加は強制ではありません。多くのメンバーがバイトや学業と両立しながら、自分のペースでサークル活動を楽しんでいます。</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" style="border-bottom: 1px solid #e0e0e0; padding: 1.5rem 1rem;">
+                        <summary style="font-weight: bold; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Q. 他の大学の学生でも入部できますか？</span>
+                            <span class="faq-icon" style="font-size: 1.5rem; font-weight: normal;">+</span>
+                        </summary>
+                        <div class="faq-answer" style="padding-top: 1.5rem; line-height: 1.8; color: #555;">
+                            <p>A. 大歓迎です！実際に他大学から参加しているメンバーもいます。大学の垣根を越えて、最高の仲間を作りましょう！</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section bg-light fade-in">
+            <div class="container">
+                <h2>入部・お問い合わせ</h2>
+                <div class="contact-box" style="text-align: center; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(4px); padding: 3rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">
+                    <p>新入部員はいつでも歓迎です！見学希望や質問は、以下のInstagramのDMまでお気軽にご連絡ください。</p>
+                    <div class="instagram-link" style="margin-top: 1.5rem;">
+                        <a href="https://www.instagram.com/bohemians__official/" target="_blank" rel="noopener noreferrer" class="btn-instagram">
+                            📸 Instagramをチェックする (@bohemians_official)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; background: #2c3e50; color: #fff;">
+        <p>&copy; 2026 ソフトボールサークル Bohemians</p>
+    </footer>
+
+    <!-- 拡大画像表示用のモーダルウィンドウ -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <div id="modalCaption"></div>
+    </div>
+
+    <!-- スクロール連動アニメーション用のスクリプト -->
+    <script>
+        // FAQのアコーディオン制御
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const summary = item.querySelector('summary');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.faq-icon');
+            
+            summary.addEventListener('click', (e) => {
+                e.preventDefault(); // detailsのデフォルト動作をキャンセル
+                item.open = !item.open;
+                icon.textContent = item.open ? '−' : '+';
+            });
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 }); // 15%見えたら発火
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // 画像拡大モーダルの制御
+        function openModal(imgSrc, captionText) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("modalImg");
+            var caption = document.getElementById("modalCaption");
+            
+            modal.style.display = "flex";
+            setTimeout(() => modal.classList.add('show'), 10); // 少し遅らせてアニメーションさせる
+            modalImg.src = imgSrc;
+            caption.innerHTML = captionText;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("imageModal");
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = "none", 300); // アニメーション終了後に非表示
+        }
+    </script>
+</body>
+</html>

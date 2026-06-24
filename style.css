@@ -1,0 +1,528 @@
+/* スムーススクロールの設定 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 全体の基本的な設定 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.8;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    background-image: url('S__51314743_0.jpg'); /* ここをお好きな画像のURLやファイル名に変更できます */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+}
+
+/* 背景画像をうっすら見せるための半透明の白いオーバーレイ */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.6); /* 背景画像を濃く（くっきり）見せるため透明度を下げました */
+    z-index: -1;
+}
+
+/* ヘッダー（ヒーローセクション）のデザイン */
+.hero {
+    position: relative;
+    color: white;
+    padding: 6rem 1rem;
+    overflow: hidden;
+}
+
+/* ヒーローの背景画像アニメーション */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('istockphoto-2210228475-612x612.jpg'); /* 用意したJPG画像のファイル名に変更してください */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    animation: zoomBg 15s ease-in-out infinite alternate; /* ゆっくりズーム */
+    /* 下部をグラデーションで徐々に透明にして、下の背景となめらかに繋げる */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+}
+
+@keyframes zoomBg {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.hero-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+/* ヒーローコンテンツの順次アニメーション */
+.hero-content h1, 
+.hero-content .catchphrase, 
+.hero-content p, 
+.hero-content img,
+.hero-content .btn {
+    opacity: 0;
+    animation: fadeInUpHero 1s ease-out forwards;
+}
+
+.hero-content img { animation-delay: 0.1s; }
+.hero-content .sub-text-hero { animation-delay: 0.2s; }
+.hero-content h1 { animation-delay: 0.4s; }
+.hero-content .catchphrase { animation-delay: 0.6s; }
+.hero-content .desc { animation-delay: 0.8s; }
+.hero-content .btn { animation-delay: 1.0s; }
+
+@keyframes fadeInUpHero {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.hero-image {
+    flex: 1;
+    animation: float 6s ease-in-out infinite; /* 常にふわりと浮遊させる */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+    box-shadow: -15px 15px 0px #fca311; /* G Mining風のソリッドなアクセント影 */
+    object-fit: cover;
+    opacity: 0; /* 初期状態は透明にしておく */
+    animation: fadeInUp 1.2s ease-out forwards; /* 1.2秒かけてアニメーションを実行 */
+}
+
+/* 下からふわっとフェードインするアニメーションの定義 */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); /* 少し下に配置 */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* 元の位置に戻る */
+    }
+}
+
+/* スマホ向けに縦並びにする */
+@media (max-width: 768px) {
+    .hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+}
+
+.hero h1 {
+    margin: 0 0 1rem 0;
+    font-size: 3.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.hero .catchphrase {
+    font-size: 1.25rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+    color: #e2e8f0;
+}
+
+/* ボタンの共通デザイン */
+.btn {
+    display: inline-block;
+    background-color: white;
+    color: #0a2540;
+    padding: 0.8rem 2.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-top: 2rem;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ボタンのキラッと光るシャインエフェクト */
+.btn::after, .btn-instagram::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn:hover::after, .btn-instagram:hover::after {
+    left: 150%;
+}
+
+/* メインコンテンツの幅や配置の設定 */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+}
+
+/* 各セクションのデザイン */
+.section {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 4rem 3rem;
+    margin-bottom: 4rem;
+    border-radius: 8px;
+    border: 1px solid #eaedf1;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.02);
+    backdrop-filter: blur(8px); /* すりガラス効果 */
+}
+
+.bg-light {
+    background-color: rgba(248, 249, 250, 0.7);
+    border: none;
+    box-shadow: none;
+}
+
+/* スクロール連動フェードイン用のクラス */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 見出し(h2)のデザイン */
+h2 {
+    color: #1a202c;
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    letter-spacing: -0.01em;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #0056b3;
+    margin: 1rem auto 0;
+}
+
+/* 活動内容のカードデザイン (横並び) */
+.activity-cards {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    flex-wrap: wrap; /* スマホでは縦並びになるように */
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.85);
+    flex: 1;
+    min-width: 250px;
+    padding: 2.5rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #eaedf1;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: #0056b3;
+}
+
+.card h3 {
+    color: #1a202c;
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+/* 年間スケジュール */
+.timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background: #eaedf1;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 4px solid #0056b3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    left: -2.5rem;
+    width: 16px;
+    height: 16px;
+    background: #0056b3;
+    border: 4px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(0,86,179,0.2);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(10px) translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    background: #f8f9fa;
+}
+
+.timeline-item:hover::before {
+    background: #fca311; /* ホバー時のアクセントカラー */
+    box-shadow: 0 0 0 4px rgba(252,163,17,0.2);
+}
+
+.timeline-item:hover .timeline-content {
+    animation: slightBounce 0.5s ease;
+}
+
+@keyframes slightBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.timeline-date {
+    font-weight: bold;
+    color: #0056b3;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sub-text {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.2rem;
+    display: block;
+}
+
+.btn-external {
+    display: inline-block;
+    background: #0056b3;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 86, 179, 0.2);
+}
+
+.btn-external:hover {
+    background: #004494;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 86, 179, 0.3);
+}
+
+.click-hint {
+    font-size: 0.85rem;
+    color: #888;
+    background: #eee;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .click-hint {
+    background: #0056b3;
+    color: white;
+}
+
+/* Instagramボタン */
+.contact-box {
+    text-align: center;
+}
+
+.instagram-link {
+    margin-top: 2rem;
+}
+
+.btn-instagram {
+    display: inline-block;
+    background-color: #1a202c;
+    color: white;
+    padding: 0.8rem 2.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-instagram:hover {
+    background-color: #2d3748;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* フッターのデザイン */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    color: #718096;
+    border-top: 1px solid #eaedf1;
+}
+
+/* カルーセル（無限スクロールギャラリー） */
+.carousel-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.carousel-track {
+    display: inline-flex;
+    gap: 1.5rem;
+    animation: scroll 25s linear infinite; /* 25秒かけてループ */
+}
+
+.carousel-track img {
+    height: 250px;
+    width: 350px;
+    object-fit: cover;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.carousel-track img:hover {
+    transform: scale(1.08) translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-350px * 3 - 1.5rem * 3)); } /* 画像3枚分スライドしたらリセット */
+}
+
+/* 画像拡大モーダルウィンドウ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal.show .modal-content {
+    transform: scale(1); /* ふわっとズームインする */
+}
+
+#modalCaption {
+    margin-top: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #fca311;
+}

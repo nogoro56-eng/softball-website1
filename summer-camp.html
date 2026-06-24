@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夏合宿の様子 - Bohemians</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; margin: 0; }
+        .btn { display: inline-block; padding: 0.8rem 1.5rem; text-decoration: none; font-weight: bold; }
+ 
+        /* --- 新しいギャラリースタイル --- */
+        .camp-features-container {
+            padding: 2rem 1rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem; /* 各項目の間のスペース */
+        }
+ 
+        .camp-feature {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+ 
+        /* 偶数番目のレイアウトを反転 */
+        .camp-feature:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+ 
+        .feature-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        .feature-image img {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            display: block;
+        }
+ 
+        .feature-description {
+            flex: 1.2; /* テキスト側に少し広いスペースを確保 */
+        }
+        .feature-description h3 {
+            font-size: 1.6rem;
+            color: #0056b3;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .feature-description p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+ 
+        /* スマートフォン用のレスポンシブ対応 */
+        @media (max-width: 768px) {
+            .camp-feature, .camp-feature:nth-child(even) {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+            .feature-image, .feature-description {
+                min-width: 100%;
+            }
+            .feature-description h3 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <header class="hero" style="padding: 3rem 1rem; text-align: center;">
+        <h1 style="margin: 0; font-size: 2.5rem;">🔥 9月 夏合宿 🔥</h1>
+        <p class="catchphrase" style="margin-top: 1rem;">最高の夏の思い出！</p>
+    </header>
+    <main>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="index.html" class="btn" style="margin-top: 0;">⬅ トップページに戻る</a>
+        </div>
+        <div class="camp-features-container">
+            <!-- 
+                ▼▼▼ ここから写真と説明を編集 ▼▼▼
+                各項目の src="..." に写真のファイルパスを、
+                <h3>...</h3> と <p>...</p> の中に見出しと詳しい説明を入れてください。
+            -->
+ 
+            <!-- ① 体育館レクリエーション -->
+            <div class="camp-feature">
+                <div class="feature-image">
+                    <img src="夏合宿の様子 (3).jpg" alt="体育館でのレクリエーション">
+                </div>
+                <div class="feature-description">
+                    <h3>1日目：体育館レクリエーション</h3>
+                    <p>合宿初日は体育館でのレクリエーションからスタート！<br>チーム対抗のドッジボールやバスケ、バレーボールなどで、学年関係なくみんなで汗を流しました。これから始まる合宿に向けて、最高のウォーミングアップになりました！</p>
+                </div>
+            </div>
+ 
+            <!-- ② ソフトボールの写真1 -->
+            <div class="camp-feature">
+                <div class="feature-image">
+                    <img src="夏合宿の様子 (2).jpg" alt="ソフトボールの試合風景">
+                </div>
+                <div class="feature-description">
+                    <h3>メインイベント：ソフトボール！</h3>
+                    <p>これぞ合宿の醍醐味、ソフトボール！<br>広々としたグラウンドを借りて、思う存分プレーを楽しみました。青空の下、ナイスプレーや珍プレーが続出し、チームの絆も一層深まりました。</p>
+                </div>
+            </div>
+ 
+            <!-- ③ ソフトボールの写真2 -->
+            <div class="camp-feature">
+                <div class="feature-image">
+                    <img src="夏合宿の様子 (4).jpg" alt="バッティングの様子">
+                </div>
+                <div class="feature-description">
+                    <h3>練習の成果を発揮！</h3>
+                    <p>普段の練習の成果が光る瞬間！<br>鋭い打球、仲間からの声援、そしてベンチの盛り上がり。一人ひとりが主役になれるのがBohemiansの魅力です。約8時間ソフトボールを精一杯楽しみます！！</p>
+                </div>
+            </div>
+ 
+            <!-- ④ 花火の写真 -->
+            <div class="camp-feature">
+                <div class="feature-image">
+                    <img src="夏合宿の様子 (1).jpg" alt="夜の花火">
+                </div>
+                <div class="feature-description">
+                    <h3>夜のお楽しみ：花火</h3>
+                    <p>夏といえば花火！！、夜の花火タイム。<br>みんなで輪になって、線香花火をしたり、打ち上げ花火に歓声を上げたり。夏合宿ならではの、エモーショナルなひとときです！</p>
+                </div>
+            </div>
+ 
+            <!-- ⑤ 集合写真 -->
+            <div class="camp-feature">
+                <div class="feature-image">
+                    <img src="夏合宿の様子 (5).jpg" alt="夏合宿の集合写真">
+                </div>
+                <div class="feature-description">
+                    <h3>最高の仲間たちと</h3>
+                    <p>楽しかった合宿もいよいよ最終日。最高の仲間たちと記念撮影！<br>この合宿を通して、新しい友達ができたり、先輩・後輩との距離が縮まったり、かけがえのない思い出がたくさん作れます。毎年、夏と春に合宿を行っているので、ぜひ来てください！</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
